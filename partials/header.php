@@ -1,9 +1,8 @@
-<!--   
-                                                 NAVBAR START
-                                                                                             -->
+<!-- Nav Start  -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="index.php">HG Hotels</a>
+    <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="index.php">
+    <i class="bi bi-heart-pulse-fill text-primary me-2"></i>My Clinic</a>
     <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +12,7 @@
           <a class="nav-link active me-2" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link me-2" href="rooms.php">Rooms</a>
+          <a class="nav-link me-2" href="blogs.php">Blogs</a>
         </li>
         <li class="nav-item">
           <a class="nav-link me-2" href="facilities.php">Facilities</a>
@@ -27,8 +26,8 @@
       
       </ul>
       <form class="d-flex">
-      <button type="button" class="btn btn-outline-dark me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-      <button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+      <button type="button" class="btn btn-outline-primary me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+      <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
         
       
       </form>

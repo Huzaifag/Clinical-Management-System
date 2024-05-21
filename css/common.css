@@ -1,6 +1,30 @@
 :root{
   --button_color:#6c757d;
   --button_color_hover:#adb5bd;
+  --primary-blue: #007bff;
+  --primary-green: #28a745;
+  --white: #ffffff;
+  --light-gray: #f8f9fa;
+  --beige: #f5f5dc;
+  --light-blue: #c7e5ff;
+  --light-green: #d4edda;
+  --text-color: #333; /* Default text color */
+}
+
+.bg-light-blue{
+  background-color: var(--light-blue);
+}
+
+
+.div-cont{
+  height: 250px; 
+  border-radius: 25px; 
+  border: 1px;
+  
+}
+
+.text-primary-green{
+  color: var(--primary-green);
 }
 
 .swiper {
@@ -16,7 +40,7 @@
 .carousel-img {
   display: block;
   width: 100%;
-  height: 400px;
+  height: 500px;
   object-fit: cover;
   object-position: center;
 }
@@ -35,4 +59,20 @@
   
   margin: 0 auto;
   height: 1.7px;
+}
+
+.experty{
+  font-weight: bolder;
+  font-size: 50px;
+}
+
+.blog-pic{
+    height: 300px;
+    object-fit: cover;
+    object-position: center;      
+}
+.pop:hover{
+  border-top-color:var(--button_color_hover) !important;
+  transform: scale(1.03);
+  transition: all 0.3s;
 }
