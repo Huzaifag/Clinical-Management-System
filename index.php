@@ -9,7 +9,7 @@
         
         .availability-form {
             position: relative;
-            margin-top: -60px;
+            margin-top: -120px;
             z-index: 2;
         }
         .features {
@@ -40,7 +40,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div class="card bg-dark text-white">
-            <img src="images/carousel/1.jpg" class="card-image carousel-img" alt="">
+        <img src="images/carousel/1.webp" class="card-image carousel-img" alt="">
             <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column text-dark w-50">
                 <h1 class="card-title mt-5 h-font fw-bold fs-1">We Care About your Health</h1>
                 <p class="card-text">Welcome to Wellness Clinic, where we prioritize your well-being above all else. Our clinic offers a comprehensive range of holistic health services designed to nurture your body, mind, and spirit. From personalized treatment plans to expert guidance, we're dedicated to supporting you on your journey to optimal health and vitality.</p>
@@ -50,7 +50,7 @@
       </div>
       <div class="swiper-slide">
         <div class="card bg-dark text-white">
-            <img src="images/carousel/2.jpg" class="card-image carousel-img" alt="">
+        <img src="images/carousel/2.png" class="card-image carousel-img" alt="">
             <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column text-dark w-50">
                 <h1 class="card-title mt-5 h-font fw-bold fs-1">We Care About your Health</h1>
                 <p class="card-text">Welcome to Wellness Clinic, where we prioritize your well-being above all else. Our clinic offers a comprehensive range of holistic health services designed to nurture your body, mind, and spirit. From personalized treatment plans to expert guidance, we're dedicated to supporting you on your journey to optimal health and vitality.</p>
@@ -72,7 +72,7 @@
         <div class="card bg-dark text-white">
             <img src="images/carousel/4.jpg" class="card-image carousel-img" alt="">
             <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column text-dark w-50">
-                <h1 class="card-title mt-5 fw-bold fs-1">We Care About your Health</h1>
+                <h1 class="card-title mt-5 fw-bold fs-1 h-font">We Care About your Health</h1>
                 <p class="card-text">Welcome to Wellness Clinic, where we prioritize your well-being above all else. Our clinic offers a comprehensive range of holistic health services designed to nurture your body, mind, and spirit. From personalized treatment plans to expert guidance, we're dedicated to supporting you on your journey to optimal health and vitality.</p>
                 
             </div>
@@ -215,7 +215,7 @@
         </div>
         <div class="col-md-3 text-center py-4 my-3 bg-white rounded shadow">
         <img src="images/features/pharmacy.svg" width="100px" class="mb-3" alt="">
-        <h4>Pharmacutical Care</h4>
+        <h4>Pharmaceutical Care</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, ab!Lorem ipsum dolor sit amet consectetur</p>
         </div>
         
@@ -298,7 +298,7 @@
            <span class="badge rounded-pill bg-light text-dark">JAN 24, 2024</span>
             <p>Explore the journey to a healthier heart with our blog series dedicated to heart-healthy habits. From dietary tips to exercise routines...</p> 
             <div class="d-flex justify-content-evenly">              
-              <a href="#" class="btn btn-sm btn-outline-primary shadow-none">Room More</a>
+              <a href="#" class="btn btn-sm btn-outline-success shadow-none">Read More</a>
             </div>
           </div>
         </div>
@@ -312,7 +312,7 @@
            <span class="badge rounded-pill bg-light text-dark">JAN 26, 2024</span>
             <p>Explore the journey to a healthier heart with our blog series dedicated to heart-healthy habits. From dietary tips to exercise routines...</p> 
             <div class="d-flex justify-content-evenly">
-            <a href="#" class="btn btn-sm btn-outline-primary shadow-none">Room More</a>
+            <a href="#" class="btn btn-sm btn-outline-success shadow-none">Read More</a>
             </div>
           </div>
         </div>
@@ -326,7 +326,7 @@
            <span class="badge rounded-pill bg-light text-dark">JAN 24, 2024</span> 
             <p>Explore the journey to a healthier heart with our blog series dedicated to heart-healthy habits. From dietary tips to exercise routines...</p> 
             <div class="d-flex justify-content-evenly">
-            <a href="#" class="btn btn-sm btn-outline-primary shadow-none">Room More</a>
+            <a href="#" class="btn btn-sm btn-outline-success shadow-none">Read More</a>
             </div>
           </div>
         </div>
