@@ -17,6 +17,10 @@
             margin-top: -80px;
             z-index: 2;
         }
+        *{
+          padding: 0;
+          margin:0;
+        }
         
 
         @media screen and (max-width: 575px) {
@@ -35,13 +39,13 @@
     <?php require('partials/header.php'); ?>
 
     <!-- Carousel Start -->
-<div class="container-fluid px-lg-4 mt-4">
+<div class="container-fluid mt-4">
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <div class="card bg-dark text-white">
+        <div class="card bg-dark text-white border-none">
         <img src="images/carousel/1.webp" class="card-image carousel-img" alt="">
-            <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column text-dark w-50">
+            <div class="card-img-overlay border-none d-flex align-items-center justify-content-center flex-column text-dark w-50">
                 <h1 class="card-title mt-5 h-font fw-bold fs-1">We Care About your Health</h1>
                 <p class="card-text">Welcome to Wellness Clinic, where we prioritize your well-being above all else. Our clinic offers a comprehensive range of holistic health services designed to nurture your body, mind, and spirit. From personalized treatment plans to expert guidance, we're dedicated to supporting you on your journey to optimal health and vitality.</p>
                 

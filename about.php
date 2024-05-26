@@ -38,7 +38,7 @@
         </p>
       </div>
       <div class="col-lg-5 col-md-5 mb-5 order-lg-2 order-md-2 order-1">
-        <img src="images/about/about.jpg" alt="about" class="w-100">
+        <img src="images/about/doctor.png" alt="about" class="w-100">
       </div>
     </div>
   </div>
@@ -136,7 +136,7 @@
                     <div class="col-lg-6">
                         <h5>Amir Ali</h5>
                         <p class="text-success">Pharmacist</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui perspiciatis nemo harum tenetur repellendus, pariatur nisi similique repellat nihil corporis.</p>
                         <span class="d-flex justify-content-evenly">
                               <a class="text-dark " href="#"><i class="bi bi-facebook"></i></a>
                               <a class="text-dark " href="#"><i class="bi bi-twitter"></i></a>
