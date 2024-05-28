@@ -89,62 +89,34 @@
     <!-- Swiper Testimonials -->
     <div class="swiper-container swipper-testimonial">
         <div class="swiper-wrapper">
-            <!-- Testimonial 1 -->
-            <div class="swiper-slide bg-white p-4">
-                <div class="team-card" ="400px">
-                    <div class="row">
-                        <div class="col-lg-6">
-                        <img src="images/about/mujahid.png" width="100%" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-lg-6">
-                            <h5>Dr Mujahid</h5>
-                            <p class="text-success">Doctor</p>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui perspiciatis nemo harum tenetur repellendus, pariatur nisi similique repellat nihil corporis.</p>
-                            <span class="d-flex justify-content-evenly">
-                              <a class="text-dark " href="#"><i class="bi bi-facebook"></i></a>
-                              <a class="text-dark " href="#"><i class="bi bi-twitter"></i></a>
-                              <a class="text-dark " href="#"><i class="bi bi-instagram"></i></a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Testimonial 2 -->
-            <div class="swiper-slide bg-white p-4">
+        <?php
+    $team_r = selectAll('staff');
+    $path = ABOUT_IMAGE_PATH;
+    while($row = mysqli_fetch_assoc($team_r)){
+        echo '<!-- Testimonial 1 -->
+        <div class="swiper-slide bg-info p-4">
+            <div class="team-card" style="width: 400px;">
                 <div class="row">
                     <div class="col-lg-6">
-                    <img src="images/about/nurse.png" width="100%" class="img-fluid rounded-start" alt="...">
+                        <img src="'.$path.$row['image'].'" width="100%" height="200px" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-lg-6">
-                        <h5>Neelam Shah</h5>
-                        <p class="text-success">Nurse</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui perspiciatis nemo harum tenetur repellendus, pariatur nisi similique repellat nihil corporis.</p>
+                        <h5 class="p-0 m-0">'.$row['name'].'</h5>
+                        <p class="text-success">'.$row['role'].'</p>
+                        <p>'.$row['description'].'</p>
                         <span class="d-flex justify-content-evenly">
-                              <a class="text-dark " href="#"><i class="bi bi-facebook"></i></a>
-                              <a class="text-dark " href="#"><i class="bi bi-twitter"></i></a>
-                              <a class="text-dark " href="#"><i class="bi bi-instagram"></i></a>
+                            <a class="text-dark " href="'.$row['fb'].'"><i class="bi bi-facebook"></i></a>
+                            <a class="text-dark " href="'.$row['tw'].'"><i class="bi bi-twitter"></i></a>
+                            <a class="text-dark " href="'.$row['insta'].'"><i class="bi bi-instagram"></i></a>
                         </span>
                     </div>
                 </div>
             </div>
-            <!-- Testimonial 3 -->
-            <div class="swiper-slide bg-white p-4">
-                <div class="row">
-                    <div class="col-lg-6">
-                    <img src="images/about/pharmacist.png" width="100%" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-lg-6">
-                        <h5>Amir Ali</h5>
-                        <p class="text-success">Pharmacist</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui perspiciatis nemo harum tenetur repellendus, pariatur nisi similique repellat nihil corporis.</p>
-                        <span class="d-flex justify-content-evenly">
-                              <a class="text-dark " href="#"><i class="bi bi-facebook"></i></a>
-                              <a class="text-dark " href="#"><i class="bi bi-twitter"></i></a>
-                              <a class="text-dark " href="#"><i class="bi bi-instagram"></i></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+        </div>';
+    }
+?>
+
+            
         </div>
         <div class="swiper-pagination"></div>
     </div>

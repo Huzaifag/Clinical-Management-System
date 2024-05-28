@@ -32,11 +32,11 @@
             <a class="nav-link text-white" href="doctors.php">Manage Doctors</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="userqueries.php">User Queries</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link text-white" href="staff.php">Manage Staff</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="userqueries.php">User Queries</a>
+          </li>          
           <li class="nav-item">
             <a class="nav-link text-white" href="customization.php">Customization</a>
           </li>

@@ -1,8 +1,31 @@
+<?php
+require('admin/partials/db_config.php');
+require('admin/partials/essentials.php');
+// Query to select data
+$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no` = ?";
+$values = [1];
+$contact_r = select($contact_q, $values, 'i');
+if ($contact_r) {
+    $contact_data = mysqli_fetch_array($contact_r);
+}
+$generals_q = "SELECT * FROM `generals` WHERE `id` = ?";
+$values = [1];
+$generals_r = select($generals_q, $values, 'i');
+if ($generals_r) {
+    $generals_data = mysqli_fetch_array($generals_r);
+    $site_title = $generals_data['site_title'];
+    $shutdown = false;
+    if($generals_data['shutdown'] == 1){
+      $shutdown = true;
+    }
+}
+?>
+
 <!-- Nav Start  -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="index.php">
-    <i class="bi bi-heart-pulse-fill text-primary me-2"></i>My Clinic</a>
+    <i class="bi bi-heart-pulse-fill text-primary me-2"></i><?php echo $site_title; ?></a>
     <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

@@ -1,13 +1,37 @@
+<?php
+// require('admin/partials/db_config.php');
+// require('admin/partials/essentials.php');
+// Query to select data
+$contact_q = "SELECT * FROM `contact_details` WHERE `sr_no` = ?";
+$values = [1];
+$contact_r = select($contact_q, $values, 'i');
+if ($contact_r) {
+    $contact_data = mysqli_fetch_array($contact_r);
+    $fb = $contact_data['fb'];
+    $insta = $contact_data['insta'];
+    $tw = $contact_data['tw'];
+}
+$generals_q = "SELECT * FROM `generals` WHERE `id` = ?";
+$values = [1];
+$generals_r = select($generals_q, $values, 'i');
+if ($generals_r) {
+    $generals_data = mysqli_fetch_array($generals_r);
+    $site_title = $generals_data['site_title'];
+    $about_us = $generals_data['about_us'];
+    $shutdown = false;
+    if($generals_data['shutdown'] == 1){
+      $shutdown = true;
+    }
+}
+?>
+
 <!-- footer  -->
 
   <div class="container-fluid bg-white mt-5">
       <div class="row">
         <div class="col-lg-4 p-4">
-          <h5 class="h-font fw-bold fs-3 mb-3"><i class="bi bi-heart-pulse-fill text-primary me-2"></i>My Clinic</h5>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Officia illum obcaecati enim, ipsam maiores
-            debitis Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Sed, neque.</p>
+          <h5 class="h-font fw-bold fs-3 mb-3"><i class="bi bi-heart-pulse-fill text-primary me-2"></i><?php echo $site_title; ?></h5>
+          <p><?php echo $about_us; ?></p>
         </div>
         <div class="col-lg-4 p-4">
           <h5 class="mb-3">Links</h5>
@@ -19,13 +43,13 @@
         </div>
         <div class="col-lg-4 p-4">
           <h5 class="mb-3">Follow us</h5>
-          <a class="mb-2 text-dark d-inline-block text-decoration-none" href="#">         
+          <a class="mb-2 text-dark d-inline-block text-decoration-none" href="<?php echo $tw; ?>">         
               <i class="bi bi-twitter-x me-1"></i>Twitter
           </a><br>
-          <a class="mb-2 text-dark d-inline-block text-decoration-none" href="#">         
+          <a class="mb-2 text-dark d-inline-block text-decoration-none" href="<?php echo $fb; ?>">         
             <i class="bi bi-facebook me-1"></i>Facebook
           </a><br>
-          <a class="mb-2 text-dark d-inline-block text-decoration-none" href="#">         
+          <a class="mb-2 text-dark d-inline-block text-decoration-none" href="<?php echo $insta; ?>">         
             <i class="bi bi-instagram me-1"></i>Instagram
           </a>
         </div>

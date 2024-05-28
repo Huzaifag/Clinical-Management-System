@@ -23,41 +23,55 @@
        Animi fugit iste ipsum recusandae <br> consequatur ad sit 
        provident. Reprehenderit, consequatur numquam.
       </p>
+
       <div class="container">
         <div class="row">
 
           <div class="col-lg-6 col-md-6 mb-5 px-4 ">
             <div class="bg-white shadow rounded p-4 ">
-            <iframe height="320px" class="w-100 rounded mb-4" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13796.159493267167!2d72.20588198764041!3d30.178854947145116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393cba39c923e429%3A0x243aca6cec64ed0b!2z2KfaiNinINmI2KzavtuM2KfZiNin2YTbgSwgVmVoYXJpLCBQdW5qYWIsIFBha2lzdGFu!5e0!3m2!1sen!2s!4v1713836385670!5m2!1sen!2s"  height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe height="320px" class="w-100 rounded mb-4" src="<?php echo $contact_data['iframe']?>"  height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
               <h5>Address</h5>
-              <a href="https://maps.app.goo.gl/5PttkX9zhRbpNbGH6" class="d-inline-block text-decoration-none text-dark mb-2" target ="_blank">
-              <i class="bi bi-geo-alt-fill"></i> XYZ, Wijhianwala, Vehari, Punjab
+              <a href="<?php echo $contact_data['gmap']?>" class="d-inline-block text-decoration-none text-dark mb-2" target ="_blank">
+              <i class="bi bi-geo-alt-fill"></i> <?php echo $contact_data['address']?>
               </a>
 
               <h5 class = "mt-4">Call us</h5>
-                <a class="d-inline-block mb-4 text-decoration-none text-dark" href="tel: +923046902667">
-                  <i class="bi bi-telephone-fill me-1"></i>03046902667
+              <a class="d-inline-block mb-4 text-decoration-none text-dark" href="tel:+<?php echo $contact_data['pn1']?>"> 
+                <i class="bi bi-telephone-fill me-1"></i>+<?php echo $contact_data['pn1']?>
                 </a><br>
-                <a class="d-inline-block text-decoration-none text-dark" href="tel: +923046902667">
-                  <i class="bi bi-telephone-fill me-1"></i>03046902667
-                </a>
+            <?php
+            if($contact_data['pn2'] != ''){
+              echo <<<data
+              <a class="d-inline-block mb-4 text-decoration-none text-dark" href="tel:{$contact_data['pn2']}">
+                  <i class="bi bi-telephone-fill me-1"></i>+{$contact_data['pn2']}
+              </a>
+            data;
+            }
+            ?>
 
                 <h5 class="mt-4">Email us</h5>
-                <a href="mailto: huzaifa6715@gmail.com" class="d-inline-block text-decoration-none text-dark">
-                <i class="bi bi-envelope-at-fill"></i> huzaifa6715@gmail.com
-                </a>
-
-                <h5 class="mt-4">Follow us</h5>
-                  <a class="d-inline-block text-dark fs-5" href="#">
-                      <i class="bi bi-twitter-x me-2"></i>
-                  </a>
-                  <a class="d-inline-block text-dark fs-5" href="#">
-                      <i class="bi bi-facebook me-2"></i>
-                  </a>
-                  <a class="d-inline-block text-dark fs-5 " href="#">
-                      <i class="bi bi-instagram "></i>
-                  </a>
+                <a class="d-inline-block mb-3" href="<?php echo $contact_data['fb']?>" target = "_blank">
+                  <span class="badge bg-light text-dark p-2 fs-6">
+                    <i class="bi bi-facebook me-1"></i>Facebook
+                  </span>
+                </a><br>
+                <a class="d-inline-block mb-3" href="<?php echo $contact_data['insta']?>" target = "_blank">
+                  <span class="badge bg-light text-dark p-2 fs-6">
+                    <i class="bi bi-instagram me-1"></i>Instagram
+                  </span>
+                </a><br>
+                  <?php
+                      if($contact_data['tw'] != ''){
+                        echo <<<html
+                        <a class="d-inline-block" href="{$contact_data['tw']}" target = "_blank">
+                          <span class="badge bg-light text-dark p-2 fs-6">
+                            <i class="bi bi-twitter-x me-1"></i>Twitter
+                          </span>
+                        </a><br>
+                      html;
+                      }
+                  ?>
             </div>
           </div>
           <div class="col-lg-6 col-md-6 px-4 ">

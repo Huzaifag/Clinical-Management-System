@@ -75,7 +75,7 @@ session_regenerate_id(true);
           </button>
       </div>
       <div class="table-responsive-md" style="min-height: 450px;" id="style-4">
-                        <table class="table table-hover border">
+                        <table class="table table-hover border" id="myTable">
                             <!-- Table Header -->
                             <thead>
                                 <tr class="bg-info text-white text-center">

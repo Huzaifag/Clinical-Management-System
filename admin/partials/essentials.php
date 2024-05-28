@@ -1,17 +1,19 @@
 <?php
 //for Front End data
-define('SITE_URL', 'http://127.0.0.1/fyProject/');
+define('SITE_URL', 'http://127.0.0.1/CMS/');
 define('ABOUT_IMAGE_PATH',SITE_URL.'images/about/');
 define('CAROUSEL_IMAGE_PATH',SITE_URL.'images/carousel/');
 define('FEATURES_IMAGE_PATH',SITE_URL.'images/features/');
 define('ROOMS_IMAGE_PATH',SITE_URL.'images/rooms/');
+define('DOCTOR_IMAGE_PATH',SITE_URL.'images/doctor/');
 
 //Backend Upload process needs this urls
-define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/fyProject/images/');
+define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/CMS/images/');
 define('ABOUT_FOLDER', 'about/');
 define('CAROUSEL_FOLDER', 'carousel/');
 define('FEATURES_FOLDER', 'features/');
 define('ROOMS_FOLDER', 'rooms/');
+define('DOCTOR_FOLDER', 'doctor/');
 
   function alert($type, $msg){
     $bs_class = ($type == 'success') ? 'alert-success':'alert-danger';

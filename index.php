@@ -127,24 +127,29 @@
         </div>
       </form>
     </div>
+    <?php
+     $schedule_r = selectAll('schedule');
+     
+    ?>
     <div class="col-lg-4 text-primary-green bg-light-blue shadow-sm p-4 rounded">
         <h5 class="mb-4">Openning Hours</h5>
-        <div class="d-flex justify-content-between border-bottom border-2 border-dark text-dark mb-3">
-            <p>Monday - Thursday<p>
-            <p>9:00 AM - 5:00 PM<p>
-        </div>
-        <div class="d-flex justify-content-between border-bottom border-2 border-dark text-dark mb-3">
-            <p>Friday - Satureday<p>
-            <p>10:00 AM - 4:00 PM<p>
-        </div>
-        <div class="d-flex justify-content-between border-bottom border-2 border-dark text-dark mb-3">
-            <p>Sunday<p>
-            <p>Emergency Only<p>
-        </div>
-        <div class="d-flex justify-content-between border-bottom border-2 border-dark text-dark">
-            <p>Personal<p>
-            <p>7:00 PM - 9:00 PM<p>
-        </div>
+        <?php
+        while($row = mysqli_fetch_assoc($schedule_r)){
+          $open = date("h:i A", strtotime($row['open']));
+          $close = date("h:i A", strtotime($row['close']));
+          if($row['status'] == 1){
+            $timing = 'Emergency only';
+          }
+          else{
+            $timing = $open.' - '.$close;
+          }
+          echo '
+          <div class="d-flex justify-content-between border-bottom border-2 border-dark text-dark mb-3">
+            <p>'.$row['day'].'<p>
+            <p>'.$timing.'<p>
+          </div>';
+        }
+        ?>
     </div>
   </div>
 </div>
@@ -405,31 +410,43 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-      <iframe height="320px" class="w-100 rounded mb-4"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13796.159493267167!2d72.20588198764041!3d30.178854947145116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393cba39c923e429%3A0x243aca6cec64ed0b!2z2KfaiNinINmI2KzavtuM2KfZiNin2YTbgSwgVmVoYXJpLCBQdW5qYWIsIFBha2lzdGFu!5e0!3m2!1sen!2s!4v1713836385670!5m2!1sen!2s"  height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe height="320px" class="w-100 rounded mb-4"  src="<?php echo $contact_data['iframe'];?>"  height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="col-lg-4 col-md-4">
         <div class="bg-white p-4 mb-4">
           <h5>Call us</h5>
-          <a class="d-inline-block mb-4 text-decoration-none text-dark" href="tel: +923046902667">
-            <i class="bi bi-telephone-fill me-1"></i>03046902667
+          <a class="d-inline-block mb-4 text-decoration-none text-dark" href="tel: +<?php echo $contact_data['pn1'];?>">
+            <i class="bi bi-telephone-fill me-1"></i>+<?php echo $contact_data['pn1'];?>
           </a><br>
-          <a class="d-inline-block mb-4 text-decoration-none text-dark" href="tel: +923046902667">
-            <i class="bi bi-telephone-fill me-1"></i>03046902667
-          </a>
+          <?php
+            if($contact_data['pn2'] != ''){
+              echo <<<data
+              <a class="d-inline-block mb-4 text-decoration-none text-dark" href="tel:{$contact_data['pn2']}">
+                  <i class="bi bi-telephone-fill me-1"></i>+{$contact_data['pn2']}
+              </a>
+            data;
+            }
+          ?>
         </div>
         <div class="bg-white p-4 mb-4">
           <h5>Follow us</h5>
-          <a class="d-inline-block mb-3" href="#">
-            <span class="badge bg-light text-dark p-2 fs-6">
-              <i class="bi bi-twitter-x me-1"></i>Twitter
-            </span>
-          </a><br>
-          <a class="d-inline-block mb-3" href="#">
+          <?php
+      if($contact_data['tw'] != ''){
+        echo <<<html
+        <a class="d-inline-block" href="{$contact_data['tw']}" target = "_blank">
+          <span class="badge bg-light text-dark p-2 fs-6">
+            <i class="bi bi-twitter-x me-1"></i>Twitter
+          </span>
+        </a><br>
+      html;
+      }
+  ?><br>
+          <a class="d-inline-block mb-3" href="<?php echo $contact_data['fb'];?>" target = "_blank">
             <span class="badge bg-light text-dark p-2 fs-6">
               <i class="bi bi-facebook me-1"></i>Facebook
             </span>
           </a><br>
-          <a class="d-inline-block " href="#">
+          <a class="d-inline-block " href="<?php echo $contact_data['insta'];?>" target = "_blank">
             <span class="badge bg-light text-dark p-2 fs-6">
               <i class="bi bi-instagram me-1"></i>Instagram
             </span>
