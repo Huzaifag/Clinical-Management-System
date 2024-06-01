@@ -42,12 +42,12 @@ define('PATIENT_FOLDER', 'patient/');
 function logout() {
   session_start();
   session_destroy();
-  redirect('login.php');
+  redirect('index.php');
 }
 
-function adminLogin() {
+function doctorLogin() {
   session_start();
-  if (!(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] == true)) {
+  if (!(isset($_SESSION['doctor_loggedin']) && $_SESSION['doctor_loggedin'] == true)) {
       echo "
       <script>
       window.location.href = 'index.php';

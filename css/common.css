@@ -78,3 +78,10 @@
   transition: all 0.3s;
 }
 
+.custem-alert{
+  position: fixed !important;;
+  top:80px;
+  right: 25px;
+  z-index: 12;
+}
+

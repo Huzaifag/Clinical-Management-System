@@ -58,3 +58,33 @@ if ($generals_r) {
   <h6 class="text-center text-white bg-primary m-0 p-3">Design and Develop by Huzaifa Gulzar</h6>
     <!-- bootstrap Javascript  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+    function showAlert(type, msg, position = 'body') {
+  // Remove any existing alerts
+  let existingAlert = document.querySelector('.custem-alert');
+  if (existingAlert) {
+    existingAlert.remove();
+  }
+
+  // Create and append the new alert
+  let bsClass = (type === 'success') ? 'alert-success' : 'alert-danger';
+  let element = document.createElement('div');
+  let settings = document.getElementById('alert_div');
+  element.innerHTML = `
+    <div class="alert ${bsClass} alert-dismissible fade show" role="alert">
+      <strong>${msg}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `;
+
+  if (position === 'body') {
+    // appending the element to the body
+    settings.insertAdjacentElement('afterbegin', element);
+    element.classList.add('custem-alert')
+  } else {
+    document.getElementById(position).appendChild(element);
+  }
+}
+</script>

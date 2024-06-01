@@ -20,6 +20,35 @@ if ($generals_r) {
     }
 }
 ?>
+<?php
+// Start the session
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['login'])) {
+        $userEmail = $_POST['user_email'];
+        $password = $_POST['user_password'];
+        $sql = "SELECT * FROM `patient` WHERE `email` = '$userEmail'";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_num_rows($result);
+        if ($row == 1) {
+            while ($hash = mysqli_fetch_assoc($result)) {
+                if (password_verify($password, $hash['password'])) {
+                    $logIn = true;
+                    $_SESSION['user_loggedin'] = true;
+                    $_SESSION['username'] = $hash['name'];
+                    $_SESSION['userId'] = $hash['id'];
+                    redirect('index.php');
+                    exit; // Added to stop further execution after redirection
+                }
+                else{
+                  alert('Failed', 'Wrong Credentials...');
+                }
+            }
+        }
+    }
+}
+?>
 
 <!-- Nav Start  -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
@@ -48,12 +77,25 @@ if ($generals_r) {
         </li>
       
       </ul>
-      <form class="d-flex">
-      <button type="button" class="btn btn-outline-primary me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-      <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
-        
-      
-      </form>
+      <?php
+      if (isset($_SESSION['user_loggedin']) && $_SESSION['user_loggedin'] = true) { // Check if user is not logged in or not set
+        echo '<div class="dropdown">
+        <button class="btn btn-outline-primary shadow-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle me-2 fs-5"></i>'.$_SESSION['username'].' <!-- Move the username inside the icon tag -->
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Dashboard</a></li>
+          <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+        </ul>
+      </div>';
+      } else {
+        echo '<form class="d-flex">
+        <button type="button" class="btn btn-outline-primary me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>  
+      </form>';
+      }
+      ?>
     </div>
   </div>
 </nav>
@@ -68,7 +110,7 @@ if ($generals_r) {
 
   <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form action="">
+      <form id="login_form" method = "POST">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title d-flex align-items-center">
@@ -78,15 +120,15 @@ if ($generals_r) {
           <div class="modal-body">
             <div class="mb-3">
               <label  class="form-label">Email address</label>
-              <input type="email" class="form-control shadow-none">
+              <input type="email" name ="user_email" class="form-control shadow-none">
               <div class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-4">
               <label  class="form-label">Password</label>
-              <input type="password" class="form-control shadow-none">  
+              <input type="password" name ="user_password" class="form-control shadow-none">  
             </div>
             <div class="d-flex align-items-center justify-content-between mb-2">
-              <button type="submit" class="btn btn-dark shadow-none">LOGIN</button>
+              <button type="submit" name="login" class="btn btn-dark shadow-none">LOGIN</button>
               <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forget Password?</a>
             </div>
           </div>
@@ -106,7 +148,7 @@ if ($generals_r) {
 
   <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <form action="">
+      <form id="register_form">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title d-flex align-items-center">
@@ -122,47 +164,52 @@ if ($generals_r) {
               <div class="row mb-3">
                 <div class="col-md-6 ps-0">
                   <label class="form-label">Name</label>
-                  <input type="text" class="form-control shadow-none">
+                  <input type="text" name="name" class="form-control shadow-none">
                 </div>
                 <div class="col-md-6 p-0">
                   <label class="form-label">Email</label>
-                  <input type="email" class="form-control shadow-none">
+                  <input type="email" name="email" class="form-control shadow-none">
                 </div>
               </div>
               <div class="row mb-3"> 
                 <div class="col-md-6 ps-0">
                   <label class="form-label">Phone Number</label>
-                  <input type="number" class="form-control shadow-none">
+                  <input type="number" name="pn" class="form-control shadow-none">
                 </div>
                 <div class="col-md-6 p-0">
                   <label class="form-label">Picture</label>
-                  <input type="file" class="form-control shadow-none">
+                  <input type="file" name="image" class="form-control shadow-none">
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-12 p-0">
                   <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-                 <textarea class="form-control" rows="1"></textarea>
+                 <textarea class="form-control" name="address" rows="1"></textarea>
                 </div>
               </div>
               <div class="row mb-3"> 
                 <div class="col-md-6 ps-0">
-                  <label class="form-label">Pin Code</label>
-                  <input type="number" class="form-control shadow-none">
+                  <label class="form-label">Gender</label>
+                  <select class="form-select" name="gender" aria-label="Default select example">
+                    <option selected>select your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
                 <div class="col-md-6 p-0">
                   <label class="form-label">Date of birth</label>
-                  <input type="date" class="form-control shadow-none">
+                  <input type="date" name="dob" class="form-control shadow-none">
                 </div>
               </div>
               <div class="row mb-3"> 
                 <div class="col-md-6 ps-0">
                   <label class="form-label">Password</label>
-                  <input type="password" class="form-control shadow-none">
+                  <input type="password" name="pass" class="form-control shadow-none">
                 </div>
                 <div class="col-md-6 p-0">
                   <label class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control shadow-none">
+                  <input type="password" name ="cpass" class="form-control shadow-none">
                 </div>
               </div>
             </div>
@@ -177,6 +224,58 @@ if ($generals_r) {
       </form>
     </div>
   </div>
-  <!--   
-                                                 RegisterModal END
-                                                                                             -->
+
+  <div id ="alert_div"></div>
+
+  <!-- form end  -->
+
+<script>
+    register_form = document.getElementById('register_form');
+    register_form.addEventListener('submit' ,function(e){
+    e.preventDefault();
+   add_patient();
+ })
+
+ function add_patient() {
+    let data = new FormData();
+    data.append('image', register_form['image'].files[0]);
+
+    let patient_data = ['name', 'email', 'pn', 'address', 'gender', 'dob', 'pass', 'cpass'];
+
+    for (let i = 0; i < patient_data.length; i++) {
+        data.append(patient_data[i], register_form[patient_data[i]].value);
+    }
+
+    data.append('add_patient', '');
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "patient_regs.php", true);
+    xhr.onload = function () {
+        if (this.status == 200) {
+            if (this.responseText == 'inv_img') {
+                showAlert('error', 'Invalid image type. Only JPG, JPEG, PNG allowed');
+            } else if (this.responseText == 'inv_size') {
+                showAlert('error', 'Invalid image Size. Size Should be less than 2MB');
+            } else if (this.responseText == 'upload_failed') {
+                showAlert('error', 'Image failed to upload. Server Down');
+            } else if (this.responseText == 2) {
+                showAlert('error', 'Password and confirm password are not the same');
+            }
+            else if (this.responseText == 1) {
+                showAlert('error', 'User Already exist');
+            } else {
+                showAlert('success', ' Account has been created Successfully');
+                
+                document.getElementById("register_form").reset(); // Reset the form
+            }
+            // Assuming Bootstrap is correctly included and initialized
+            $('#registerModal').modal('hide');
+            
+        }
+    };
+    xhr.send(data);
+}
+</script>
+
+
+  
+

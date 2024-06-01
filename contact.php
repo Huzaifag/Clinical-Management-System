@@ -75,30 +75,66 @@
             </div>
           </div>
           <div class="col-lg-6 col-md-6 px-4 ">
+            <form action="" method = 'POST'>
             <div class="bg-white shadow rounded p-4">
               <h5>Send a message</h5>
               <div class="mt-3">
                 <label  class="form-label">Name</label>
-                <input type="text" class="form-control shadow-none">
+                <input type="text" name ="name" class="form-control shadow-none">
               </div>
               <div class="mt-3">
                 <label  class="form-label">Email</label>
-                <input type="email" class="form-control shadow-none">
+                <input type="email" name ="email" class="form-control shadow-none">
               </div>
               <div class="mt-3">
                 <label  class="form-label">Subject</label>
-                <input type="Text" class="form-control shadow-none">
+                <input type="Text" name ="subject" class="form-control shadow-none">
               </div>
               <div class="mt-3">
                   <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                 <textarea class="form-control" rows="5" style="resize: none;"></textarea>
+                 <textarea class="form-control" name="message" rows="5" style="resize: none;"></textarea>
               </div>
-              <button type="submit" class="btn text-white custom-bg mt-3 shadow-none">REGISTER</button>
-          </div>
+              <button type="submit" name="send" class="btn text-white custom-bg mt-3 shadow-none">SEND</button>
+            </div>
+            </form>
         </div>
       </div>
   </div>
   </div>
+
+  <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(isset($_POST['send'])){
+        
+
+        // Check if user is logged in
+        if (isset($_SESSION['user_loggedin']) && $_SESSION['user_loggedin'] == true) {
+            // Perform data filtration
+            $data = filteration($_POST);
+
+            // Prepare SQL query
+            $q = "INSERT INTO `user_queries`(`name`, `email`, `subject`, `message`) VALUES(?,?,?,?)";
+
+            // Prepare values for insertion
+            $values = [$data['name'], $data['email'], $data['subject'], $data['message']];
+
+            // Execute SQL query
+            $res = insert($q, $values , 'ssss');
+
+            // Check if insertion was successful
+            if($res){
+                alert('Success', 'Message sent ...');
+            } else {
+                alert('Error', 'Failed to send message');
+            }
+
+        } else {
+            alert('No Send', 'Please Login to send message');
+        }
+    }
+}
+?>
+
 
   <?php require('partials/footer.php')?>
 

@@ -3,7 +3,7 @@
     <h3 class="mb-0 h-font"><i class="bi bi-heart-pulse-fill text-danger me-2"></i>My Clinic</h3> <h2>CLINIC MANAGEMENT SYSTEM</h2>
     <div class="dropdown">
       <button class="btn btn-danger btn-lg shadow-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-workspace"></i>
-      <?php if(isset($_SESSION['name'])){echo $_SESSION['name'];}else{echo "Login";}
+      <?php if(isset($_SESSION['doctorname'])){echo 'Dr '. $_SESSION['doctorname'];}else{echo "Login";}
       ?>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -29,22 +29,25 @@
             <a class="nav-link text-white" href="dashboard.php"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="doctors.php"><i class="bi bi-person-circle me-1"></i>Manage Doctors</a>
+            <a class="nav-link text-white" href="doctors.php"><i class="bi bi-calendar2-plus-fill me-1"></i>Appointments</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="doctors.php"><i class="bi bi-person me-1"></i>Manage Patients</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="staff.php"><i class="bi bi-people me-1"></i>Manage Staff</a>
+            <a class="nav-link text-white" href="staff.php"><i class="bi bi-file-earmark-medical me-1"></i>Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="staff.php"><i class="bi bi-file-earmark-bar-graph me-1"></i>Test Reports</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="userqueries.php"><i class="bi bi-question-circle me-1"></i>User Queries</a>
           </li>          
           <li class="nav-item">
-            <a class="nav-link text-white" href="customization.php"><i class="bi bi-puzzle me-1"></i>Customization</a>
+            <a class="nav-link text-white" href="customization.php"><i class="bi bi-cash me-1"></i>Billing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="settings.php"><i class="bi bi-gear me-1"></i>Setting</a>
+            <a class="nav-link text-white" href="settings.php"><i class="bi bi-journal-text me-1"></i>Blogs</a>
           </li>
         </ul>
     </div>
