@@ -91,8 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>';
       } else {
         echo '<form class="d-flex">
-        <button type="button" class="btn btn-outline-primary me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-        <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>  
+        <button type="button" class="btn btn-outline-primary me-lg-3 me-2 shadow-none" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        <button type="button" class="btn btn-outline-primary shadow-none " data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>  
       </form>';
       }
       ?>
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <form id="login_form" method = "POST">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title d-flex align-items-center">
+            <h5 class="modal-title d-flex align-items-center text-primary">
             <i class="bi bi-person-circle me-2 fs-3"></i>User Login</h5>
             <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <input type="password" name ="user_password" class="form-control shadow-none">  
             </div>
             <div class="d-flex align-items-center justify-content-between mb-2">
-              <button type="submit" name="login" class="btn btn-dark shadow-none">LOGIN</button>
+              <button type="submit" name="login" class="btn btn-primary shadow-none">LOGIN</button>
               <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forget Password?</a>
             </div>
           </div>
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <form id="register_form">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title d-flex align-items-center">
+            <h5 class="modal-title d-flex align-items-center text-primary">
               <i class="bi bi-person-lines-fill me-2 fs-3"></i>User Registeration
             </h5>
             <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="col-md-6 p-0">
                   <label class="form-label">Picture</label>
-                  <input type="file" name="image" class="form-control shadow-none">
+                  <input type="file" name="image" class="form-control shadow-none" accept=".jpg, .png, .webp, .jpeg" required>
                 </div>
               </div>
               <div class="row mb-3">
@@ -214,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-dark shadow-none">REGISTER</button>
+              <button type="submit" class="btn btn-primary shadow-none">REGISTER</button>
             </div>
             </div>
           
@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else if (this.responseText == 2) {
                 showAlert('error', 'Password and confirm password are not the same');
             }
-            else if (this.responseText == 1) {
+            else if (this.responseText == 2) {
                 showAlert('error', 'User Already exist');
             } else {
                 showAlert('success', ' Account has been created Successfully');

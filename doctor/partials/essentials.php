@@ -7,6 +7,8 @@ define('FEATURES_IMAGE_PATH',SITE_URL.'images/features/');
 define('ROOMS_IMAGE_PATH',SITE_URL.'images/rooms/');
 define('DOCTOR_IMAGE_PATH',SITE_URL.'images/doctor/');
 define('PATIENT_IMAGE_PATH',SITE_URL.'images/patient/');
+define('REPORT_IMAGE_PATH',SITE_URL.'images/report/');
+define('BLOGS_IMAGE_PATH',SITE_URL.'images/blogs/');
 
 //Backend Upload process needs this urls
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/CMS/images/');
@@ -16,6 +18,8 @@ define('FEATURES_FOLDER', 'features/');
 define('ROOMS_FOLDER', 'rooms/');
 define('DOCTOR_FOLDER', 'doctor/');
 define('PATIENT_FOLDER', 'patient/');
+define('REPORT_FOLDER', 'report/');
+define('BLOG_FOLDER', 'blogs/');
 
   function alert($type, $msg){
     $bs_class = ($type == 'success') ? 'alert-success':'alert-danger';

@@ -1,6 +1,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script>
+var chartData = <?php echo json_encode($chartData); ?>;
+</script>
 <script>
 function showAlert(type, msg, position = 'body') {
   // Remove any existing alerts
@@ -48,4 +50,53 @@ setTimeout(function(){
         if(alertElement)
             alertElement.remove();
     }, 2000);
+    
+    
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var ctx = document.getElementById('patientChart').getContext('2d');
+    var labels = chartData.map(item => item.date);
+    var data = chartData.map(item => item.count);
+
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'New Patients',
+                data: data,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+
+    // Update total patients this week
+    var totalPatientsThisWeek = data.reduce((a, b) => a + b, 0);
+    document.querySelector('.display-4').textContent = totalPatientsThisWeek;
+
+    // Calculate percentage change
+    var percentageChange = ((data[data.length - 1] - data[0]) / data[0] * 100).toFixed(2);
+    var percentageElement = document.querySelector('.text-success span');
+    percentageElement.textContent = percentageChange + '%';
+    
+    if (percentageChange < 0) {
+        percentageElement.classList.remove('text-success');
+        percentageElement.classList.add('text-danger');
+        document.querySelector('.bi-arrow-up').classList.replace('bi-arrow-up', 'bi-arrow-down');
+    }
+});
 </script>

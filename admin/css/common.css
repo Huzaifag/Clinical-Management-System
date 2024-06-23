@@ -48,6 +48,21 @@
   right: 25px;
   z-index: 12;
 }
+.dashCard {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.dashCard img{
+  height: 150px;
+  width: 150px;
+}
+.doctorImg img{
+  height: 120px;
+  width: 120px;
+}
+
 #style-4::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

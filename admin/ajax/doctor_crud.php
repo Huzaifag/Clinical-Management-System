@@ -44,65 +44,59 @@ if(isset($_POST['add_doctor'])){
 
 
 if(isset($_POST['get_doctor'])){
-    // $q = "SELECT * FROM `team_details`";
-    // $res = mysqli_query($con, $q);
+    // Assuming selectAll function retrieves data correctly
     $res = selectAll('doctor');
     $i = 1;
     $path = DOCTOR_IMAGE_PATH;
+    $status = '';
     while($row = mysqli_fetch_assoc($res)){
+        // Determine the status button HTML based on 'status' field
+        if($row['status'] == 0){
+            $status = "<button type='button' onclick=\"set_doctor({$row['id']},1)\" class='btn btn-danger btn-sm shadow-none'>
+            Active
+            </button>";
+        }
+        else{
+            $status = "<button type='button' onclick=\"set_doctor({$row['id']},0)\" class='btn btn-dark btn-sm shadow-none'>
+            Retired
+            </button>";
+        }
+    
+        // Output each row of doctor information
         echo <<<data
         <tr class="text-center align-middle">  
-        <td>$i</td>
+        <td>{$i}</td>
         <td>{$row['name']}</td>
-        <td><img src="{$path}{$row['image']}" alt="{$row['name']}" class="img-fluid" style="width:100px"></td>
-        <td>{$row['email']}</td>
         <td>{$row['Specialization']}</td>
         <td>+{$row['pn']}</td>
         <td>{$row['date_of_join']}</td>
-        <td>{$row['address']}</td>
         <td>{$row['fees']}</td>
-        <td><button type="button" onclick="rem_doctor({$row['id']})" class="btn btn-danger btn-sm shadow-none">
-            <i class="bi bi-trash"></i> DELETE
-            </button></td>
+        <td>{$status}</td>
+        <td><a type='button' href="doctors_profile.php?doc_id={$row['id']}" class='btn btn-success btn-sm shadow-none'>
+            Profile
+            </a>
+        </td>
         </tr>
         data;
         $i++;
     }
+    
 }
 
-if(isset($_POST['rem_doctor'])){
-    // Sanitize input
-    $frm_data = filteration($_POST); // Assuming filteration function exists
 
-    // Check if doctor exists
-    $pre_q = "DELETE FROM `doctor` WHERE `id` = ?";
-    $res = select($pre_q, [$frm_data['rem_doctor']], 'i');
 
-    if($res) {
-        if(mysqli_num_rows($res) > 0) {
-            // doctor exists, fetch associated icon
-            $img = mysqli_fetch_assoc($res);
-
-            // Attempt to delete associated icon
-            if(deleteImage($img['image'], DOCTOR_FOLDER)){
-                // Icon deleted, now delete doctor
-                $q = "DELETE FROM `doctor` WHERE `id` = ?";
-                $res = delete($q, [$frm_data['rem_doctor']], 'i');
-
-                // Check if deletion was successful
-                if($res) {
-                     echo $res;
-                } else {
-                    echo "Failed to delete doctor";
-                }
-            } else {
-                echo "Failed to delete image";
-            }
-        } else {
-            echo "doctor not found";
-        }
+if(isset($_POST['set_doctor'])){
+    $id = $_POST['set_doctor'];
+    $status = $_POST['value'];
+    $query = "UPDATE `doctor` SET `status`= ?  WHERE `id` = ?";
+    $values = [$status, $id];
+    $res = update($query, $values, 'ii');
+    if($res){
+        echo $res;
     } else {
-        echo "Error executing database query: " . mysqli_error($connection); // Change $connection to your database connection variable
+        echo "Failed to update";
     }
+        
 }
+
 ?>

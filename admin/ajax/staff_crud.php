@@ -48,15 +48,17 @@ if(isset($_POST['get_staff'])){
         <tr class="text-center align-middle">  
         <td>$i</td>
         <td>{$row['name']}</td>
-        <td><img src="{$path}{$row['image']}" alt="{$row['name']}" class="img-fluid" style="width:100px"></td>
         <td>{$row['role']}</td>
         <td>+{$row['pn']}</td>
-        <td>{$row['description']}</td>
-        <td>{$row['fb']}<br>{$row['insta']}<br>{$row['tw']}</td>
         <td>{$row['address']}</td>
         <td><button type="button" onclick="rem_staff({$row['id']})" class="btn btn-danger btn-sm shadow-none">
             <i class="bi bi-trash"></i> DELETE
-            </button></td>
+            </button>
+        </td>
+        <td><a type='button' href="staff_profile.php?staff_id={$row['id']}" class='btn btn-success btn-sm shadow-none'>
+            Profile
+            </a>
+        </td>
         </tr>
         data;
         $i++;

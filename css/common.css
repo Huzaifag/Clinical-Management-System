@@ -81,7 +81,7 @@
 .custem-alert{
   position: fixed !important;;
   top:80px;
-  right: 25px;
+  right: -4px;
   z-index: 12;
 }
 

@@ -30,7 +30,7 @@ if(isset($_POST['add_patient'])){
                     $valuesp = [$frm_data['name'], $frm_data['email']];
                     $res = select($q1, $valuesp, 'ss');
                     if(mysqli_num_rows($res) == 1){
-                        echo 1;
+                        echo 2;
                     }
                     else {
                         if($frm_data['pass'] == $frm_data['cpass']){

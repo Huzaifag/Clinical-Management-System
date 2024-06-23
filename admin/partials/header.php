@@ -32,13 +32,19 @@
             <a class="nav-link text-white" href="doctors.php"><i class="bi bi-person-circle me-1"></i>Manage Doctors</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="doctors.php"><i class="bi bi-person me-1"></i>Manage Patients</a>
+            <a class="nav-link text-white" href="patients.php"><i class="bi bi-person me-1"></i>Manage Patients</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="staff.php"><i class="bi bi-people me-1"></i>Manage Staff</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="userqueries.php"><i class="bi bi-question-circle me-1"></i>User Queries</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="bill_list.php"><i class="bi bi-receipt me-1"></i>Billing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="inventory.php"><i class="bi bi-box me-1"></i>Inventory</a>
           </li>          
           <li class="nav-item">
             <a class="nav-link text-white" href="customization.php"><i class="bi bi-puzzle me-1"></i>Customization</a>

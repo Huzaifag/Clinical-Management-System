@@ -1,0 +1,41 @@
+.logo img{
+  width: 120px;
+}
+
+.report_header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4px dashed blue;
+}
+.phones, .email, .desc{
+  font-size: 12px;
+}
+.p-data{
+  border-right: 2px solid rgb(181, 181, 181) ;
+}
+.Patient_data, .medical_prescription,.recommendations{
+  border-bottom: 2px solid rgb(181, 181, 181) ;
+  
+}
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.checkbox-container label {
+  margin-left: 5px; /* Adjust as needed */
+}
+
+@media print {
+  /* Define the page size for printing */
+  @page {
+    size: letter;
+  }
+
+  /* Hide the print button when printing */
+  .print-button {
+    display: none;
+  }
+}

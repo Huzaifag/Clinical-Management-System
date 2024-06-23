@@ -47,37 +47,38 @@ doctors_s_form.addEventListener('submit' ,function(e){
    xhr.open("POST", "ajax/doctor_crud.php", true);
    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
    xhr.onload = function(){
-       console.log(this.responseText);
        document.getElementById('doctors_data').innerHTML = this.responseText;
    };
    xhr.send('get_doctor'); // Corrected the data being sent
 }
 
-function rem_doctor(val) {
- let xhr = new XMLHttpRequest();
- xhr.open("POST", "ajax/doctor_crud.php", true);
- xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
- 
- xhr.onload = function() {
-     if (xhr.status === 200) {
-         if (xhr.responseText == 1) {
-             showAlert('success', 'Doctor Removed!');
-             get_doctor(); // Assuming this function reloads Staff list
-         } else {
-             showAlert('error', 'Failed to remove Doctor.');
-         }
-     } else {
-         showAlert('error', 'Something went wrong!');
-     }
-     get_doctor();
- };
+function set_doctor(id, val) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/doctor_crud.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
+    xhr.onload = function() {
+        console.log(this.responseText); // Log the response from the server
+        
+        if (xhr.status === 200) {
+            if (this.responseText.trim() === '1') {
+                alert('Changes have been made successfully');
+                get_doctor(); // Assuming get_doctor() function reloads doctor list
+            } else {
+                alert('Something went wrong!'); // Handle errors
+            }
+        } else {
+            alert('Request failed. Status: ' + xhr.status); // Handle HTTP errors
+        }
+    };
 
- xhr.onerror = function() {
-     showAlert('error', 'Network error occurred. Please try again.');
- };
-
- xhr.send('rem_doctor=' + val);
+    xhr.onerror = function() {
+        alert('Request failed. Check your network connection.'); // Handle network errors
+    };
+    
+    xhr.send('set_doctor=' + id + '&value=' + val);
 }
+
 
 window.onload = function(){
     get_doctor();

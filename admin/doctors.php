@@ -39,14 +39,12 @@ session_regenerate_id(true);
                                 <tr class="bg-info text-white text-center">
                                     <th scope="col">sr_no</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Picture</th>
-                                    <th scope="col">Email</th>
                                     <th scope="col">Specialization</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col" width="20%">Date of Join</th>
-                                    <th scope="col">Address</th>
                                     <th scope="col">Consultation Fee</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Details</th>
                                 </tr>
                             </thead>
                             <!-- Table Body -->
