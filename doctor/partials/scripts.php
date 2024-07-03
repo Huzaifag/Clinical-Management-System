@@ -49,3 +49,78 @@ setTimeout(function(){
             alertElement.remove();
     }, 2000);
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var ctx = document.getElementById('patientChart').getContext('2d');
+      var patientData = <?php echo $chartData; ?>;
+      
+      const today = new Date();
+
+      // Function to get day name
+      function getDayName(date) {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        return days[date.getDay()];
+      }
+
+      const last7Days = [];
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(today);
+        day.setDate(today.getDate() - i);
+        last7Days.unshift(getDayName(day)); // Use day names instead of formatted dates
+      }
+
+      const aggregatedData = last7Days.reduce((acc, dayName) => {
+        // Filter patient data by day name
+        acc[dayName] = patientData.filter(patient => {
+          const patientDate = new Date(patient.date);
+          return getDayName(patientDate) === dayName;
+        }).length;
+        return acc;
+      }, {});
+
+      const labels = Object.keys(aggregatedData);
+      const counts = Object.values(aggregatedData);
+
+      const patientsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'No of Patients',
+            data: counts,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderWidth: 1,
+            tension: 0.4
+          }]
+        },
+        options: {
+          animation: {
+            duration: 2000,
+            easing: 'easeOutBounce'
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              ticks: {
+                stepSize: 5,
+                suggestedMin: 0,
+                suggestedMax: 10
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              enabled: false
+            }
+          },
+          interaction: {
+            mode: 'nearest',
+            intersect: false,
+            axis: 'x'
+          }
+        }
+      });
+    });
+  </script>

@@ -46,12 +46,12 @@ function logout() {
   redirect('login.php');
 }
 
-function adminLogin() {
+function patientLogin() {
   session_start();
-  if (!(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] == true)) {
+  if (!(isset($_SESSION['user_loggedin']) && $_SESSION['user_loggedin'] == true)) {
       echo "
       <script>
-      window.location.href = 'index.php';
+      window.location.href = '../index.php';
       </script>
       ";
       exit; // Optional: You may want to add an exit statement after the redirect to stop further execution.

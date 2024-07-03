@@ -74,7 +74,7 @@
 }
 .pop:hover{
   border-top-color:var(--button_color_hover) !important;
-  transform: scale(1.03);
+  transform: scale(1.06);
   transition: all 0.3s;
 }
 
@@ -83,5 +83,24 @@
   top:80px;
   right: -4px;
   z-index: 12;
+}
+.comment-card {
+  margin-bottom: 1rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.profile-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+.comment-details {
+  display: flex;
+  align-items: center;
+}
+.comment-date {
+  margin-left: auto;
+  font-size: 0.875rem;
+  color: #6c757d;
 }
 

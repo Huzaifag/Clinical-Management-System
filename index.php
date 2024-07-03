@@ -238,7 +238,7 @@
             $feature_path = FEATURES_IMAGE_PATH;
             while ($feature = mysqli_fetch_assoc($feature_res)) {
                 echo '
-                <div class="col-md-3 text-center py-4 my-3 bg-white rounded shadow">
+                <div class="col-md-3 text-center py-4 my-3 bg-white rounded shadow pop">
                     <img src="' . $feature_path . $feature['icon'] . '" width="100px" class="mb-3" alt="">
                     <h4>'.$feature["name"].'</h4>
                     <p>'.$feature["description"].'</p>
@@ -318,53 +318,41 @@
     <h2 class="text-center h-font mt-5 mb-4 pt-4 fw-bold text-primary">BLOGS</h2>
     <div class="container">
       <div class="row">
-        <!-- CARD 1 -->
-        <div class="col-lg-4 col-md-6 my-3">
-          <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-            <img src="images/blogs/Stress.jpg" class="card-img-top blog-pic" alt="room-pic">
-            <div class="card-body">
-              <h5>Heart-Healthy Habits: Small Changes, Big Impact</h5>
-              <span class="badge rounded-pill bg-light text-dark">JAN 24, 2024</span>
-              <p>Explore the journey to a healthier heart with our blog series dedicated to heart-healthy habits. From
-                dietary tips to exercise routines...</p>
-              <div class="d-flex justify-content-evenly">
-                <a href="#" class="btn btn-sm btn-outline-success shadow-none">Read More</a>
-              </div>
+      <?php
+        function get_Blogs() {
+            global $con;
+            $stmt = $con->prepare('SELECT * FROM `blogs` LIMIT 3');
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        $blogs = get_Blogs();
+        $blog_path = BLOGS_IMAGE_PATH;
+        foreach ($blogs as $blog) {
+            $date = new DateTime($blog['date']);
+            $formatted_date = strtoupper($date->format('M d, Y g:i A'));
+            echo '
+            <div class="col-lg-4 col-md-6 my-3 pop">
+                <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+                    <img src="'.htmlspecialchars($blog_path.$blog['image']).'" class="card-img-top blog-pic" alt="blog-pic">
+                    <div class="card-body">
+                        <h5>'.htmlspecialchars($blog['title']).'</h5>
+                        <span class="badge rounded-pill bg-light text-dark">'.htmlspecialchars($formatted_date).'</span>
+                        <p>'.htmlspecialchars(substr($blog["body"], 0, 120)).'...</p>
+                        <div class="d-flex justify-content-evenly">
+                            <a href="blogRead.php?blogid='.htmlspecialchars($blog["blog_id"]).'" class="btn btn-sm btn-outline-success shadow-none">Read More</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- CARD 2 -->
-        <div class="col-lg-4 col-md-6 my-3">
-          <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-            <img src="images/blogs/heart.jpeg" class="card-img-top blog-pic" alt="room-pic">
-            <div class="card-body">
-              <h5>The Link Between Emotions and Heart Health</h5>
-              <span class="badge rounded-pill bg-light text-dark">JAN 26, 2024</span>
-              <p>Explore the journey to a healthier heart with our blog series dedicated to heart-healthy habits. From
-                dietary tips to exercise routines...</p>
-              <div class="d-flex justify-content-evenly">
-                <a href="#" class="btn btn-sm btn-outline-success shadow-none">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- CARD 3 -->
-        <div class="col-lg-4 col-md-6 my-3">
-          <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-            <img src="images/blogs/dental.jpg" class="card-img-top blog-pic" alt="room-pic">
-            <div class="card-body">
-              <h5>The Journey to a Stress-Free Dental Experience</h5>
-              <span class="badge rounded-pill bg-light text-dark">JAN 24, 2024</span>
-              <p>Explore the journey to a healthier heart with our blog series dedicated to heart-healthy habits. From
-                dietary tips to exercise routines...</p>
-              <div class="d-flex justify-content-evenly">
-                <a href="#" class="btn btn-sm btn-outline-success shadow-none">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
+            ';
+        }
+      ?>
+        
+        
         <div class="col-lg-12 text-center">
-          <a href="#" class=" btn btn-sm btn-outline-primary shadow-none fw-bold mt-4">
+          <a href="blogs.php" class=" btn btn-sm btn-outline-primary shadow-none fw-bold mt-4" target="_blank">
             More Blogs >>
           </a>
         </div>

@@ -71,20 +71,20 @@
   object-fit: cover;
   object-position: center;
 }
+.userImg{
+  position: relative;
+}
 
-.dashCard {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+.userImg img{
+  width: 300px;
+  position: absolute;
+  top: -60%;
 }
-.dashCard img{
-  height: 80px;
+.profileImg img{
   width: 80px;
-}
-.doctorImg img{
-  height: 120px;
-  width: 120px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
 }
 
 

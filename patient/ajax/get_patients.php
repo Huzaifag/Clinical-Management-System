@@ -15,10 +15,7 @@ if(isset($_POST['get_patients'])){
       <td>$row[name]</td>
       <td>$row[email]</td>
       <td>0$row[pn]</td>
-      <td>$row[gender]</td>
-      <td><a href="patients_details.php?pid=$row[id]" class="btn btn-sm btn-success"><i class="bi bi-eye me-1"></i>View</a>
-      <button onclick="delete_patient($row[id])" class="btn btn-sm btn-danger"><i class="bi bi-trash me-1"></i></button>
-      </td>
+      <td><a href="patient_reports.php?pid=$row[id]" class="btn btn-sm btn-success"><i class="bi bi-eye me-1"></i>View Reports</a></td>
     </tr>
 html;
     $sr+= 1;
@@ -39,29 +36,12 @@ if(isset($_POST['search_patients'])){
       <td>$row[name]</td>
       <td>$row[email]</td>
       <td>0$row[pn]</td>
-      <td>$row[gender]</td>
-      <td><a href="patients_details.php?pid=$row[id]" class="btn btn-sm btn-success"><i class="bi bi-eye me-1"></i>View</a>
-      <button onclick="delete_patient($row[id])" class="btn btn-sm btn-danger"><i class="bi bi-trash me-1"></i></button>
-      </td>
+      <td><a href="patient_reports.php?pid=$row[id]" class="btn btn-sm btn-success"><i class="bi bi-eye me-1"></i>View Reports</a></td>
     </tr>
 html;
     $sr+= 1;
   }
 }
 
-if(isset($_POST['delete_patient'])){
-  // Sanitize input
-  $frm_data = filteration($_POST); // Assuming filteration function exists
 
-  $pid = $frm_data['delete_patient'];
-  $q = "UPDATE `patient` SET `status`= ? WHERE `id` = ?";
-  $values = [0, $pid];
-  $res = update($q, $values, 'ii');
-  if($res){
-    echo 1;
-  }
-  else{
-    echo 0;
-  }
-}
 ?>

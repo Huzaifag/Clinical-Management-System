@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <i class="bi bi-person-circle me-2 fs-5"></i>'.$_SESSION['username'].' <!-- Move the username inside the icon tag -->
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Dashboard</a></li>
+          <li><a class="dropdown-item" href="patient/dashboard.php">Dashboard</a></li>
           <li><a class="dropdown-item" href="logout.php">Logout</a></li>
           <li><a class="dropdown-item" href="#">Profile</a></li>
         </ul>

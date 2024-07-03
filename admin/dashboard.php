@@ -4,7 +4,6 @@
   adminLogin();
   session_regenerate_id(true);
 
-  $admin_id = $_SESSION['id'];
       // Fetching admin id
   $admin_id = $_SESSION['id'];
 
@@ -42,9 +41,9 @@
         $data[] = $row;
     }
     return array_reverse($data);
-}
+  }
 
-$chartData = getPatientDataForChart($con);
+  $chartData = getPatientDataForChart($con);
 ?>
 <!DOCTYPE html>
 <html lang="en">
