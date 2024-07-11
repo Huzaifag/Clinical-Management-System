@@ -4,7 +4,7 @@
   patientLogin();
   session_regenerate_id(true);
   $patient_id = $_SESSION['userId'];
-  $patient_name = $_SESSION['username'];  
+  $patient_name = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
