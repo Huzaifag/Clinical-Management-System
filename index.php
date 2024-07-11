@@ -117,8 +117,8 @@
             if ($generals_r) {
                 $generals_data = mysqli_fetch_array($generals_r);
                 $site_title = $generals_data['site_title'];
-                
-                
+
+
 
             }
 
@@ -146,7 +146,7 @@
                 }
               }
             }
-            
+
           ?>
 
           <?php
@@ -220,13 +220,14 @@
 
       <!-- Features Start -->
       <h2 class="text-center h-font mt-5 mb-4 pt-4 fw-bold text-primary">Services</h2>
-      <div class="container mt-5 bg-primary p-5 div-cont">
-        <div class="row text-white justify-content-around">
-          <div class="col-md-5 fw-bold">
-            <h2 class="h-font">Our Best Services For Your Solutions</h2>
+      <div class="container mt-5 bg-info shadow-sm p-5 div-cont">
+        <div class="row text-light justify-content-around align-items-center">
+          <div class="col-md-5">
+            <h2 class="h-font">Our Best Services For Your <span class="text-success h-font">Solutions</span></h2>
+            <p class="mt-4">Our best services provide tailored solutions, ensuring  personalized care, innovative treatments, and comprehensive  support to meet your unique health needs, enhancing your   well-being and quality of life.</p>
           </div>
           <div class="col-md-5">
-           Our best services provide tailored solutions, ensuring  personalized care, innovative treatments, and comprehensive  support to meet your unique health needs, enhancing your   well-being and quality of life.
+            <img src="images/features/Hospital family visit-amico.png" class="img-fluid" alt="">
           </div>
         </div>
       </div>
@@ -251,66 +252,59 @@
       <!-- Features End -->
 
       <!-- Testimonial Starts  -->
-      <h2 class="text-center h-font mt-5 mb-4 pt-4 fw-bold text-primary">TESTIMONIALS</h2>
-      <div class="container mt-5">
-        <!-- Swiper Testimonials -->
-        <div class="swiper-container swipper-testimonial">
-          <div class="swiper-wrapper">
-            <!-- Testimonial 1 -->
+<h2 class="text-center h-font mt-5 mb-4 pt-4 fw-bold text-primary">TESTIMONIALS</h2>
+<div class="container mt-5">
+  <!-- Swiper Testimonials -->
+  <div class="swiper-container swipper-testimonial">
+    <div class="swiper-wrapper">
+      <?php
+
+        $reviews_q = "SELECT * FROM `ratings` WHERE `stars` > ?;";
+        $reviews_values = [3];
+        $reviews_res = select($reviews_q, $reviews_values, 'i');
+
+        while ($a = mysqli_fetch_assoc($reviews_res)) {
+          $user_q = "SELECT * FROM `patient` WHERE `id` = ?;";
+          $user_values = [$a["patient_id"]];
+          $user_res = select($user_q, $user_values, 'i');
+          $user_data = mysqli_fetch_assoc($user_res);
+
+          $uPath = PATIENT_IMAGE_PATH;
+          $ratings = '';
+          for ($i = 0; $i < $a["stars"]; $i++) {
+            $ratings .= '<i class="bi bi-star-fill text-warning"></i>';
+          }
+
+          $review_text = htmlspecialchars($a["review"]);
+          $user_name = htmlspecialchars($user_data["name"]);
+          $user_image = htmlspecialchars($user_data["image"]);
+
+          echo <<<review
             <div class="swiper-slide bg-white p-4">
               <div class="profile d-flex align-items-center mb-2">
-                <img src="images/testimonial/user.jpg" width="30px" style="border-radius: 50%;">
-                <h6 class="m-0 ms-1">Random user1</h6>
+                <img src="$uPath$user_image" width="30px" style="border-radius: 50%;">
+                <h6 class="m-0 ms-1">$user_name</h6>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sit dolores suscipit magni, labore
-                quos? Incidunt aut numquam explicabo. Voluptatum?</p>
+              <p>$review_text</p>
               <div class="ratings">
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
+                $ratings
               </div>
             </div>
-            <!-- Testimonial 2 -->
-            <div class="swiper-slide bg-white p-4">
-              <div class="profile d-flex align-items-center mb-2">
-                <img src="images/testimonial/user.jpg" width="30px" style="border-radius: 50%;">
-                <h6 class="m-0 ms-1">Random user2</h6>
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sit dolores suscipit magni, labore
-                quos? Incidunt aut numquam explicabo. Voluptatum?</p>
-              <div class="ratings">
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-              </div>
-            </div>
-            <!-- Testimonial 3 -->
-            <div class="swiper-slide bg-white p-4">
-              <div class="profile d-flex align-items-center mb-2">
-                <img src="images/testimonial/user.jpg" width="30px" style="border-radius: 50%;">
-                <h6 class="m-0 ms-1">Random user3</h6>
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sit dolores suscipit magni, labore
-                quos? Incidunt aut numquam explicabo. Voluptatum?</p>
-              <div class="ratings">
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-        <div class="col-lg-12 text-center">
-          <a href="#" class=" btn btn-sm btn-outline-primary shadow-none fw-bold mt-4">
-            Know More >>
-          </a>
-        </div>
-      </div>
+          review;
+        }
+      ?>
+      <!-- Testimonial 1 -->
     </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="col-lg-12 text-center">
+    <a href="#" class="btn btn-sm btn-outline-primary shadow-none fw-bold mt-4">
+      Know More >>
+    </a>
+  </div>
+</div>
+</div>
+
 
     <!-- Testimonial End  -->
 
@@ -349,8 +343,8 @@
             ';
         }
       ?>
-        
-        
+
+
         <div class="col-lg-12 text-center">
           <a href="blogs.php" class=" btn btn-sm btn-outline-primary shadow-none fw-bold mt-4" target="_blank">
             More Blogs >>
@@ -375,11 +369,7 @@
         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
           data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin
-            adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
+            Our clinic offers a comprehensive range of services including general medicine, specialized treatments, preventive care, diagnostic testing, and wellness programs tailored to meet patient needs.
           </div>
         </div>
       </div>
@@ -393,11 +383,7 @@
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
           data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-            plugin adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
+            You can schedule an appointment by calling our clinic directly, using our online booking system on our website, or visiting us in person during business hours.
           </div>
         </div>
       </div>
@@ -411,11 +397,7 @@
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
           data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
-            adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
+            Yes, we offer telemedicine and virtual consultations to provide convenient and accessible healthcare services, allowing you to consult with our doctors from the comfort of your home.
           </div>
         </div>
       </div>
@@ -429,11 +411,7 @@
         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
           data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
-            adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
+            Our clinic is distinguished by our highly qualified medical team, state-of-the-art facilities, personalized patient care, and commitment to integrating advanced technology for superior healthcare outcomes.
           </div>
         </div>
       </div>
@@ -445,7 +423,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-        <iframe height="320px" class="w-100 rounded mb-4" 
+        <iframe height="320px" class="w-100 rounded mb-4"
           src="<?php echo $contact_data['iframe'];?>" height="450"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
@@ -453,7 +431,7 @@
       <div class="col-lg-4 col-md-4">
         <div class="bg-white p-4 mb-4">
           <h5>Call us</h5>
-          <a class="d-inline-block mb-4 text-decoration-none text-dark" 
+          <a class="d-inline-block mb-4 text-decoration-none text-dark"
             href="tel: +<?php echo $contact_data['pn1'];?>">
             <i class="bi bi-telephone-fill me-1"></i>+<?php echo $contact_data['pn1'];?>
           </a><br>

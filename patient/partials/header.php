@@ -19,12 +19,12 @@
   <div class="col-lg-2 bg-info border-top border-3 border-secondary" id="dashboard-menu">
   <nav class="navbar navbar-expand-lg navbar-dark justify-content-between" id="nav-bar">
     <div class="container-fluid flex-lg-column align-items-stretch">
-      <h4 class="mt-2 text-light">USER PANEL</h4> 
+      <h4 class="mt-2 text-light">USER PANEL</h4>
       <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#adminDropDown" aria-controls="adminDropDown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropDown">
-        <ul class="nav nav-pills flex-column">      
+        <ul class="nav nav-pills flex-column">
           <li class="nav-item">
             <a class="nav-link text-white" href="dashboard.php"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a>
           </li>
@@ -44,8 +44,8 @@
             <a class="nav-link text-white" href="bill_list.php"><i class="bi bi-receipt me-1"></i>My Bills</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="inventory.php"><i class="bi bi-box me-1"></i>Inventory</a>
-          </li>          
+            <a class="nav-link text-white" href="feedback.php"><i class="bi bi-box me-1"></i>Feedback</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="customization.php"><i class="bi bi-puzzle me-1"></i>Customization</a>
           </li>

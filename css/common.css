@@ -17,10 +17,10 @@
 
 
 .div-cont{
-  height: 250px; 
-  border-radius: 25px; 
+  height: 500px; 
+  border-radius: 25px;
   border: 1px;
-  
+
 }
 
 .text-primary-green{
@@ -56,10 +56,10 @@
 }
 .h-line{
   width: 150px;
-  
+
   margin: 0 auto;
   height: 1.7px;
-  
+
 }
 
 .experty{
@@ -70,7 +70,7 @@
 .blog-pic{
     height: 300px;
     object-fit: cover;
-    object-position: center;      
+    object-position: center;
 }
 .pop:hover{
   border-top-color:var(--button_color_hover) !important;
@@ -103,4 +103,3 @@
   font-size: 0.875rem;
   color: #6c757d;
 }
-
