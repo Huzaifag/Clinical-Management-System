@@ -23,8 +23,8 @@
   $report_val = [$patient_id];
   $report_r = select($report_q, $report_val, 'i');
   $report_data = mysqli_fetch_assoc($report_r);
-  $height = $report_data['height'] / 100;
-  $weight = $report_data['weight'];        // Weight in kilograms
+  $height = $report_data['height'] / 100 || "No data Available";
+  $weight = $report_data['weight'] || "No data Available";        // Weight in kilograms
   $bmi = 0;
   // Calculate BMI
   if ($height > 0) {

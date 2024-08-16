@@ -29,25 +29,28 @@
             <a class="nav-link text-white" href="dashboard.php"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="appointments.php"><i class="bi bi-calendar2-plus-fill me-1"></i>Appointments</a>
+            <a class="nav-link text-white" href="appointments.php">📅 Appointments</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="patients.php"><i class="bi bi-person me-1"></i>Manage Patients</a>
+            <a class="nav-link text-white" href="patients.php">👨‍🤝‍👨🏾 Manage Patients</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="reports.php"><i class="bi bi-file-earmark-medical me-1"></i>Reports</a>
+            <a class="nav-link text-white" href="reports.php">🏥 Reports</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="test.php"><i class="bi bi-file-earmark-bar-graph me-1"></i>Test Reports</a>
+            <a class="nav-link text-white" href="test.php">🩺 Test Reports</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="userqueries.php"><i class="bi bi-question-circle me-1"></i>User Queries</a>
+            <a class="nav-link text-white" href="userqueries.php">❓ User Queries</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="profile.php">👨‍⚕️ Profile</a>
           </li>          
           <li class="nav-item">
-            <a class="nav-link text-white" href="customization.php"><i class="bi bi-cash me-1"></i>Billing</a>
+            <a class="nav-link text-white" href="bill_list.php">💳 Billing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="blogs.php"><i class="bi bi-journal-text me-1"></i>Blogs</a>
+            <a class="nav-link text-white" href="blogs.php">✍ Blogs</a>
           </li>
         </ul>
     </div>

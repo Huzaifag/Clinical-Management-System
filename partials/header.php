@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!-- Nav Start  -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 py-lg-2 shadow-sm sticky-top" id="nav-bar">
   <div class="container-fluid">
     <a class="navbar-brand me-5 fw-bold fs-3 h-font" href="index.php">
     <i class="bi bi-heart-pulse-fill text-primary me-2"></i><?php echo $site_title; ?></a>
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active me-2" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link me-2" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link me-2" href="blogs.php">Blogs</a>
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="d-flex align-items-center justify-content-between mb-2">
               <button type="submit" name="login" class="btn btn-primary shadow-none">LOGIN</button>
-              <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forget Password?</a>
+              <a href="forget.php" class="text-secondary text-decoration-none">Forget Password?</a>
             </div>
           </div>
           
@@ -274,6 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     };
     xhr.send(data);
 }
+
 </script>
 
 

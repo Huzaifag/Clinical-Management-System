@@ -10,7 +10,8 @@ session_regenerate_id(true);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel- Dashboard</title>
+  <title>Doctor Panel- Appointments</title>
+  <link rel="icon" type="image/x-icon" href="pic/appoints.png">
   <?php require('partials/links.php');?>
 </head>
 <body class="bg-light">
@@ -19,7 +20,7 @@ session_regenerate_id(true);
   <div class="container-fluid" id="menu-content">
   <div class="row">
     <div class="col-lg-10 ms-auto p-4">
-    <h3 class="mb-4">Appointments</h3>
+    <h3 class="mb-4">📅 Appointments</h3>
 
 <!-- Query Data Table -->
 <div class="card border-0 shadow-sm mb-4 alert alert-success">

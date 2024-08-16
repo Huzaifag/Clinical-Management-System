@@ -9,7 +9,8 @@ session_regenerate_id(true);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Reports</title>
+  <title>Doctor Panel - Reports</title>
+  <link rel="icon" type="image/x-icon" href="pic/reports.png">
   <?php require('partials/links.php'); ?>
 </head>
 <body class="bg-light">

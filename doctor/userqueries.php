@@ -52,6 +52,7 @@ if(isset($_GET['del'])){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel- User Queries</title>
+  <link rel="icon" type="image/x-icon" href="pic/query.webp">
   <?php require('partials/links.php');?>
 </head>
 <body class="bg-light">
@@ -60,7 +61,10 @@ if(isset($_GET['del'])){
   <div class="container-fluid" id="menu-content">
     <div class="row">
       <div class="col-lg-10 ms-auto p-4" id="alert_div">
-        <h3 class="mb-4">User Queries</h3>
+        <div class="heading d-flex justify-content-start align-items-center mb-2">
+          <img src="pic/query.webp" alt="pic/medReport.png" class="img-fluid me-1" width='50px'>
+          <h3 class="text-success"> User Queries</h3>
+        </div>
 
         <!-- Query Data Table -->
         <div class="card border-0 shadow-sm mb-4 alert alert-success">

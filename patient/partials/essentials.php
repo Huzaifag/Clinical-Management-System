@@ -8,6 +8,7 @@ define('ROOMS_IMAGE_PATH',SITE_URL.'images/rooms/');
 define('DOCTOR_IMAGE_PATH',SITE_URL.'images/doctor/');
 define('PATIENT_IMAGE_PATH',SITE_URL.'images/patient/');
 define('BLOGS_IMAGE_PATH',SITE_URL.'images/blogs/');
+define('REPORT_IMAGE_PATH',SITE_URL.'images/report/');
 
 //Backend Upload process needs this urls
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'].'/CMS/images/');

@@ -59,7 +59,20 @@ if ($generals_r) {
     <!-- bootstrap Javascript  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script>
+  function setActive() {
+        let nav = document.getElementById('nav-bar');
+        let a_tags = nav.getElementsByTagName('a');
+        for (let index = 0; index < a_tags.length; index++) {
+          let file = a_tags[index].href.split('/').pop();
+          let file_name = file.split('.')[0];
+          if (document.location.href.indexOf(file_name) >= 0) {
+            a_tags[index].classList.add('active');
+          }
+        }
+}
+  setActive();
+</script>
     <script>
     function showAlert(type, msg, position = 'body') {
   // Remove any existing alerts
@@ -87,4 +100,6 @@ if ($generals_r) {
     document.getElementById(position).appendChild(element);
   }
 }
+
 </script>
+

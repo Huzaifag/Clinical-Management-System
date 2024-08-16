@@ -5,12 +5,7 @@
   doctorLogin();
   session_regenerate_id(true);
   //Doctor Data
-  $doctor_id = $_SESSION['doctorId'];
-  $doctor_name = $_SESSION['doctorname'];
-  $doctor_q = 'SELECT * FROM `doctor` WHERE `id` = ?';
-  $valued = [$doctor_id];
-  $doctor = select($doctor_q, $valued, 'i');
-  $doctor_data = mysqli_fetch_assoc($doctor);
+
   // General Data
   $general = selectAll('generals');
   $general_data = mysqli_fetch_assoc($general);
@@ -22,15 +17,13 @@
   $phone2 = $contact_data['pn2'];
   $email = $contact_data['email'];
   $address = $contact_data['address'];
-  // Report Data 
-  $report_q = 'SELECT * FROM `test_report` WHERE `id` = ?';
-  $value = [$_GET['report_id']];
-  $report = select($report_q, $value, 'i');
-  $report_data = mysqli_fetch_assoc($report);
-  $pateint_id = $report_data['patient_id'];
-  $report_date = $report_data['date'];
-  $path = REPORT_IMAGE_PATH;
-  $report_image = $report_data['image'];
+  // bill Data 
+  $bill_q = 'SELECT * FROM `bills` WHERE `bill_id` = ?';
+  $value = [$_GET['bill_id']];
+  $bill = select($bill_q, $value, 'i');
+  $bill_data = mysqli_fetch_assoc($bill);
+  $pateint_id = $bill_data['patient_id'];
+  $bill_date = $bill_data['date'];
   // Patient Data
   $patient_q = 'SELECT * FROM `patient` WHERE `id` = ?';
   $value = [$pateint_id];
@@ -52,16 +45,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patient - Test Report</title>
-  <link rel="icon" type="image/x-icon" href="pic/reports.png">
   <?php require('partials/links.php');?>
   <link rel="stylesheet" href="css/report.css">
   <style>
         body{
           background-color: rgba(255, 255, 255, 0.5);
-          background-image: url(pic/reportbg.png);
+          background-image: url(pic/billbg.png);
           background-size: 50%;
           background-repeat: no-repeat;
-          background-position: center;
+          background-position: bottom;
+          min-height: 900px;
         }
   </style>
 </head>
@@ -95,65 +88,44 @@
       </div>
       <div class="col-4 p-data">
         <p><span class="fw-bold">Patient_Id:</span> <?php echo $pateint_id;?></p>
-        <p>Report_Id: <?php echo $_GET['report_id'];?></p>
-        <p class="fw-bold">Ref. By: Dr <?php echo $doctor_name;?></p>
+        <p>Bill_Id: <?php echo $_GET['bill_id'];?></p>
       </div>
       <div class="col-4">
         <h6>Regester on:</h6>
         <p><?php echo $patient_reg_date;?></p>
-        <h6>Report on:</h6>
-        <p><?php echo $report_date;?></p>
+        <h6>Bill on:</h6>
+        <p><?php echo $bill_date;?></p>
       </div>
     </div>
-    <div class="report_data row mt-3 pb-3">
-      <table class="table table-info table-bordered">
-        <tbody >
-          <tr>
-            <th scope="row">Examination Type</th>
-            <td><?php echo  $report_data['ex_type']; ?></td>
-            <th scope="row">Probe/Frequency Used</th>
-            <td><?php echo  $report_data['probe']; ?> (MHz)</td>
-          </tr>
-        </tbody>
+    <div class="bill_data row mt-3 pb-3">
+    <div class="table-responsive-md mt-2">
+      <table class="table">
+                  <thead>
+                    <tr class="bg-info text-white text-center">
+                      <th scope="col">Doctor Fees</th>
+                      <th scope="col">Medicine</th>
+                      <th scope="col">Lab Test</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bill_data">
+                    <?php
+                        echo '
+                          <tr class="text-center">
+                            <td>'.$bill_data['doc_fees'].'</td>
+                            <td>'.$bill_data['medicine'].'</td>
+                            <td>'.$bill_data['lab_test'].'</td>
+                            <td>'.$bill_data['total'].'</td>
+                            <td>'.$bill_data['date'].'</td>
+                          </tr>
+                        ';
+                    ?>
+                  </tbody>
       </table>
     </div>
-    <div class="reason_examination row pb-2 justify-content-between">
-      <div class="col-12">
-        <h4>Reason for Examination</h4>
-        <p><?php echo $report_data['reason']; ?></p>
-      </div>     
     </div>
-    <div class="findings row pb-2 justify-content-between">
-      <div class="col-6">
-        <h4>Ultrasound Image</h4>
-        <img src="<?php echo $path . $report_data['image']; ?>" alt="" widht=200px height=200px>
-      </div>
-      <div class="col-6">
-        <h4>Findings</h4>
-        <p><?php echo  $report_data['findings']; ?></p>
-      </div>     
-    </div>
-    <div class="recommendations row pb-2 justify-content-between">
-      <div class="col-12">
-        <h4>Recommendations</h4>
-        <p><?php echo $report_data['recommendations']; ?></p>
-      </div>     
-    </div>
-    <div class="disclaimer mt-3 row">
-      <div class="col-6">
-        <h4>Medical Report Disclaimer</h4>
-        <ul class="desc">
-          <li>Educational tool for learning and demonstration.</li>
-          <li>Not a medical diagnosis or treatment plan.</li>
-          <li>Not for clinical decision making.</li>
-        </ul>
-      </div>
-      <div class="col-6 text-center">
-        <h4 class="mb-4">Doctor Signature</h4>
-        <h5><u>Dr <?php echo $doctor_data['name'];?></u></h5>
-        <p>(<?php echo $doctor_data['Specialization'];?>)<p>  
-      </div>
-    </div>
+
 
   </div>
   <script>

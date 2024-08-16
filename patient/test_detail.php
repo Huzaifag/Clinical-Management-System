@@ -1,16 +1,12 @@
 <?php
   require("partials/essentials.php");
   require("partials/db_config.php");
+  patientLogin(); 
 
-  doctorLogin();
   session_regenerate_id(true);
-  //Doctor Data
-  $doctor_id = $_SESSION['doctorId'];
-  $doctor_name = $_SESSION['doctorname'];
-  $doctor_q = 'SELECT * FROM `doctor` WHERE `id` = ?';
-  $valued = [$doctor_id];
-  $doctor = select($doctor_q, $valued, 'i');
-  $doctor_data = mysqli_fetch_assoc($doctor);
+  $patient_id = $_SESSION['userId'];
+  $patient_name = $_SESSION['username'];
+
   // General Data
   $general = selectAll('generals');
   $general_data = mysqli_fetch_assoc($general);
@@ -27,13 +23,13 @@
   $value = [$_GET['report_id']];
   $report = select($report_q, $value, 'i');
   $report_data = mysqli_fetch_assoc($report);
-  $pateint_id = $report_data['patient_id'];
   $report_date = $report_data['date'];
+  $doctor_id = $report_data['doctor_id'];
   $path = REPORT_IMAGE_PATH;
   $report_image = $report_data['image'];
   // Patient Data
   $patient_q = 'SELECT * FROM `patient` WHERE `id` = ?';
-  $value = [$pateint_id];
+  $value = [$patient_id];
   $patient = select($patient_q, $value, 'i');
   $patient_data = mysqli_fetch_assoc($patient);
   $patient_name = $patient_data['name'];
@@ -44,7 +40,12 @@
   $today = new DateTime('today');
   $dob = new DateTime($patient_dob);
   $age = $dob->diff($today)->y;
-
+  //Doctor Data
+  $doctor_q = 'SELECT * FROM `doctor` WHERE `id` = ?';
+  $value = [$doctor_id];
+  $doctor = select($doctor_q, $value, 'i');
+  $doctor_data = mysqli_fetch_assoc($doctor);
+  $doctor_name = $doctor_data['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patient - Test Report</title>
-  <link rel="icon" type="image/x-icon" href="pic/reports.png">
   <?php require('partials/links.php');?>
   <link rel="stylesheet" href="css/report.css">
   <style>
@@ -94,7 +94,7 @@
         <p>Sex: <?php echo $patient_sex;?></p>
       </div>
       <div class="col-4 p-data">
-        <p><span class="fw-bold">Patient_Id:</span> <?php echo $pateint_id;?></p>
+        <p><span class="fw-bold">Patient_Id:</span> <?php echo $patient_id;?></p>
         <p>Report_Id: <?php echo $_GET['report_id'];?></p>
         <p class="fw-bold">Ref. By: Dr <?php echo $doctor_name;?></p>
       </div>

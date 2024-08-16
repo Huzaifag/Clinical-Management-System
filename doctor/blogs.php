@@ -9,7 +9,8 @@ session_regenerate_id(true);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel- Dashboard</title>
+  <title>Doctor Panel- Blogs</title>
+  <link rel="icon" type="image/x-icon" href="pic/blogicon.png">
   <?php require('partials/links.php');?>
 </head>
 <body class="bg-light">
@@ -21,8 +22,11 @@ session_regenerate_id(true);
 
     <div class="container-flude">
       <div class="row justify-content-between align-items-center">
-        <div class="col-2">
-          <h4>Blogs</h4>
+        <div class="col-4">
+          <div class="heading d-flex justify-content-start align-items-center mb-2">
+            <img src="pic/writeBlogs.png" alt="pic/writeBlogs.png" class="img-fluid me-1" width='50px'>
+            <h3 class="text-success">Write Blogs</h3>
+          </div>
         </div>
         <div class="col-2">
           <button class="btn btn-outline-info shadow-none" data-bs-toggle="modal" data-bs-target="#post_blog">

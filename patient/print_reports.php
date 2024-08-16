@@ -1,16 +1,11 @@
 <?php
-  require("partials/essentials.php");
   require("partials/db_config.php");
-
-  doctorLogin();
+  require("partials/essentials.php");
+  patientLogin();
   session_regenerate_id(true);
-  //Doctor Data
-  $doctor_id = $_SESSION['doctorId'];
-  $doctor_name = $_SESSION['doctorname'];
-  $doctor_q = 'SELECT * FROM `doctor` WHERE `id` = ?';
-  $valued = [$doctor_id];
-  $doctor = select($doctor_q, $valued, 'i');
-  $doctor_data = mysqli_fetch_assoc($doctor);
+  $patient_id = $_SESSION['userId'];
+  $patient_name = $_SESSION['username'];
+  
   // General Data
   $general = selectAll('generals');
   $general_data = mysqli_fetch_assoc($general);
@@ -23,17 +18,21 @@
   $email = $contact_data['email'];
   $address = $contact_data['address'];
   // Report Data 
-  $report_q = 'SELECT * FROM `test_report` WHERE `id` = ?';
+  $report_q = 'SELECT * FROM `reports` WHERE `id` = ?';
   $value = [$_GET['report_id']];
   $report = select($report_q, $value, 'i');
   $report_data = mysqli_fetch_assoc($report);
-  $pateint_id = $report_data['patient_id'];
+  $doctor_id = $report_data['doctor_id'];
   $report_date = $report_data['date'];
-  $path = REPORT_IMAGE_PATH;
-  $report_image = $report_data['image'];
+  //Doctor Data
+  $doctor_q = 'SELECT * FROM `doctor` WHERE `id` = ?';
+  $value = [$doctor_id];
+  $doctor = select($doctor_q, $value, 'i');
+  $doctor_data = mysqli_fetch_assoc($doctor);
+  $doctor_name = $doctor_data['name'];
   // Patient Data
   $patient_q = 'SELECT * FROM `patient` WHERE `id` = ?';
-  $value = [$pateint_id];
+  $value = [$patient_id];
   $patient = select($patient_q, $value, 'i');
   $patient_data = mysqli_fetch_assoc($patient);
   $patient_name = $patient_data['name'];
@@ -51,8 +50,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patient - Test Report</title>
-  <link rel="icon" type="image/x-icon" href="pic/reports.png">
+  <title>Patient - Report</title>
   <?php require('partials/links.php');?>
   <link rel="stylesheet" href="css/report.css">
   <style>
@@ -94,7 +92,7 @@
         <p>Sex: <?php echo $patient_sex;?></p>
       </div>
       <div class="col-4 p-data">
-        <p><span class="fw-bold">Patient_Id:</span> <?php echo $pateint_id;?></p>
+        <p><span class="fw-bold">Patient_Id:</span> <?php echo $patient_id;?></p>
         <p>Report_Id: <?php echo $_GET['report_id'];?></p>
         <p class="fw-bold">Ref. By: Dr <?php echo $doctor_name;?></p>
       </div>
@@ -106,40 +104,59 @@
       </div>
     </div>
     <div class="report_data row mt-3 pb-3">
-      <table class="table table-info table-bordered">
+      <table class="table table-bordered">
         <tbody >
           <tr>
-            <th scope="row">Examination Type</th>
-            <td><?php echo  $report_data['ex_type']; ?></td>
-            <th scope="row">Probe/Frequency Used</th>
-            <td><?php echo  $report_data['probe']; ?> (MHz)</td>
+            <th scope="row">Blood Pressure</th>
+            <td><?php echo  $report_data['bp']; ?> (mmHg)</td>
+            <th scope="row">Blood Sugar</th>
+            <td><?php echo  $report_data['b_sugar']; ?> (mg/dL)</td>
+          </tr>
+          <tr>
+            <th scope="row">Blody Temprature</th>
+            <td><?php echo  $report_data['temp']; ?> (°C)</td>
+            <th scope="row">Pulse</th>
+            <td><?php echo  $report_data['pulse']; ?>  (bpm)</td>
+          </tr>
+          <tr>
+            <th scope="row">Height</th>
+            <td><?php echo  $report_data['height']; ?> (ft, in)</td>
+            <th scope="row">Weight</th>
+            <td><?php echo  $report_data['weight']; ?> (Kg)</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="reason_examination row pb-2 justify-content-between">
-      <div class="col-12">
-        <h4>Reason for Examination</h4>
-        <p><?php echo $report_data['reason']; ?></p>
-      </div>     
-    </div>
-    <div class="findings row pb-2 justify-content-between">
-      <div class="col-6">
-        <h4>Ultrasound Image</h4>
-        <img src="<?php echo $path . $report_data['image']; ?>" alt="" widht=200px height=200px>
+    <div class="symptoms row pb-3">
+      <h4>Symptoms:</h4>
+      <div class="row">
+        <form id="symptom_form">
+        <?php
+            $symptoms_list = selectAll('symptoms');
+            while ($symptoms = mysqli_fetch_assoc($symptoms_list)) {
+                echo '<div class="checkbox-container">';
+                echo '<input class="form-check-input shadow-none" type="checkbox" value="' . $symptoms['id'] . '" name="symptoms">';
+                echo '<label for="fever1">' . $symptoms['symptom'] . '</label>';
+                echo '</div>';
+            }
+        ?>
+        <input type="text" value = "<?php echo $_GET['report_id']; ?>" id="report_id" name="report_id" hidden>
+
+        </form>
       </div>
-      <div class="col-6">
-        <h4>Findings</h4>
-        <p><?php echo  $report_data['findings']; ?></p>
-      </div>     
     </div>
-    <div class="recommendations row pb-2 justify-content-between">
-      <div class="col-12">
-        <h4>Recommendations</h4>
-        <p><?php echo $report_data['recommendations']; ?></p>
-      </div>     
+    <div class="medical_prescription row pb-3 justify-content-between">
+      <div class="col-5">
+        <h4>Chief Complaints</h4>
+        <p><?php echo $report_data['chief_complaint']; ?></p>
+      </div>
+      <div class="col-5">
+        <h4>Medical Prescription</h4>
+        <p><?php echo $report_data['medical_prescription']; ?></p>
+      </div>
+      
     </div>
-    <div class="disclaimer mt-3 row">
+    <div class="disclaimer row mt-3">
       <div class="col-6">
         <h4>Medical Report Disclaimer</h4>
         <ul class="desc">
@@ -194,7 +211,7 @@
     }
 
     window.onload = function(){
-      get_symptoms()
+      get_symptoms();
     }
   </script>  
 </body>

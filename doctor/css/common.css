@@ -86,6 +86,12 @@
   height: 120px;
   width: 120px;
 }
+#gif1{
+  height: 346px;
+}
+#gif2{
+  height: 270px;
+}
 
 
 @media screen and (max-width:991px) {

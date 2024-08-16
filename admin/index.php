@@ -56,7 +56,7 @@
           </form>
         </div>
         <div class="col-md-5 ">
-          <img src="pic/admin.png" class="rounded-3" alt="">
+          <img src="pic/clinic.gif" class="rounded-3" alt="">
         </div>
     </div>
   </div>

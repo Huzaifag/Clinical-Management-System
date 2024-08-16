@@ -52,6 +52,7 @@
   <title>Patient - Report</title>
   <?php require('partials/links.php');?>
   <link rel="stylesheet" href="css/report.css">
+  <link rel="icon" type="image/x-icon" href="pic/reports.png">
   <style>
         body{
           background-color: rgba(255, 255, 255, 0.5);

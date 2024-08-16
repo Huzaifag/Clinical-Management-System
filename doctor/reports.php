@@ -10,7 +10,8 @@ session_regenerate_id(true);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel- Reports</title>
+  <title>Doctor Panel- Reports</title>
+  <link rel="icon" type="image/x-icon" href="pic/reports.png">
   <?php require('partials/links.php');?>
 </head>
 <body class="bg-light">
@@ -19,7 +20,10 @@ session_regenerate_id(true);
   <div class="container-fluid" id="menu-content">
   <div class="row">
     <div class="col-lg-10 ms-auto p-4">
-    <h3 class="mb-4">Generate Reports</h3>
+      <div class="heading d-flex justify-content-start align-items-center mb-2">
+        <img src="pic/medReport.png" alt="pic/medReport.png" class="img-fluid me-1" width='50px'>
+        <h3 class="text-success"> Generate Reports</h3>
+      </div>
 
 <!-- Query Data Table -->
 <div class="card border-0 shadow-sm mb-4 alert alert-success">

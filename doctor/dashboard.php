@@ -51,7 +51,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Dashboard</title>
+  <title>Doctor Panel - Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="pic/url.png">
   <?php require('partials/links.php');?>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -97,11 +98,9 @@
             </div>
           </div>
           
-          <div class="row mt-3">
-            <div class="col-md-7">
-              <div class="row my-2 bg-white shadow-sm">
-                <iframe src="charts.php"  height="350px" frameborder="0"></iframe>
-              </div>
+          <div class="row mt-3 align-items-center justify-content-evenly">
+            <div class="col-md-5">
+              <img src="pic/patient.gif" class='img-fluid' id='gif2' alt="">
             </div>
             <div class="col-md-5">
               <div class="container my-4">
@@ -125,6 +124,17 @@
               </div>
             </div>
           </div>
+          <div class="row mt-3 align-items-center justify-content-evenly">
+            <div class="col-md-7">
+              <div class="row my-2 bg-white shadow-sm">
+                <iframe src="charts.php"  height="350px" frameborder="0"></iframe>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <img src="pic/deadline.gif" class='img-fluid' id='gif1' alt="">
+            </div>
+          </div>
+          
           
         </div>
       </div>

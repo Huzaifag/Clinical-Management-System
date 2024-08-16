@@ -96,6 +96,9 @@
   #menu-content{
     margin-top: 60px;
   }
+  #pTitle{
+    display: none;
+  }
 }
 
 
